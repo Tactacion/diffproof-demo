@@ -14,6 +14,7 @@ const page = (title, script) => `<!doctype html>
 </body></html>`;
 
 const REPORTS_SCRIPT = `document.getElementById('export').onclick = () => {
+  console.log('export clicked');
   document.getElementById('status').textContent = 'Export ready: reports.csv';
 };`;
 
