@@ -14,12 +14,14 @@ const page = (title, script) => `<!doctype html>
 </body></html>`;
 
 const REPORTS_SCRIPT = `document.getElementById('export').onclick = () => {
-  console.log('export clicked');
   document.getElementById('status').textContent = 'Export ready: reports.csv';
 };`;
 
-// BUG: exportInvoices is never defined, so the button throws and nothing shows.
-const INVOICES_SCRIPT = `document.getElementById('export').onclick = () => exportInvoices();`;
+const INVOICES_SCRIPT = `function exportInvoices() {
+  window.invoiceExporter.generate('invoices.csv');
+  document.getElementById('status').textContent = 'Export ready: invoices.csv';
+}
+document.getElementById('export').onclick = () => exportInvoices();`;
 
 const routes = {
   '/reports': page('Reports', REPORTS_SCRIPT),
